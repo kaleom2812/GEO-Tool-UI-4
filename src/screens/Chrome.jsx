@@ -16,7 +16,6 @@ const NAV_ITEMS = [
   { label: "Overview", target: "landing", steps: ["landing"] },
   { label: "Audit brief", target: "input", steps: ["input"] },
   { label: "Findings", target: "preview", steps: ["processing", "preview"] },
-  { label: "Full report", target: "report", steps: ["payment", "access", "report"] },
 ];
 
 function PrimaryNav() {
