@@ -92,7 +92,7 @@ export default function ReportPreview() {
                   onClick={() => go("access")}
                   className="text-sm text-ink-3 underline decoration-rule-2 underline-offset-4 hover:text-ink"
                 >
-                  I already have an access code
+                  
                 </button>
               </div>
               <p className="mt-4 text-2xs text-ink-3">
