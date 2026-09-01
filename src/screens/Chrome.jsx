@@ -11,6 +11,39 @@ const STEP_LABEL = {
   report: "Full deliverable",
 };
 
+// Primary navigation — maps each destination to the flow steps it represents.
+const NAV_ITEMS = [
+  { label: "Overview", target: "landing", steps: ["landing"] },
+  { label: "Audit brief", target: "input", steps: ["input"] },
+  { label: "Findings", target: "preview", steps: ["processing", "preview"] },
+  { label: "Full report", target: "report", steps: ["payment", "access", "report"] },
+];
+
+function PrimaryNav() {
+  const { step, go, unlocked } = useFlow();
+  return (
+    <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+      {NAV_ITEMS.map((item) => {
+        const active = item.steps.includes(step);
+        const dest = item.target === "report" && !unlocked ? "payment" : item.target;
+        return (
+          <button
+            key={item.target}
+            type="button"
+            onClick={() => go(dest)}
+            aria-current={active ? "page" : undefined}
+            className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
+              active ? "bg-paper-2 font-medium text-ink" : "text-ink-2 hover:text-ink"
+            }`}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
 export function Wordmark({ small = false }) {
   return (
     <a
@@ -46,6 +79,7 @@ export function TopBar({ right }) {
             </button>
           )}
           <Wordmark small />
+          <PrimaryNav />
         </div>
         <div className="flex items-center gap-4">
           {right}
